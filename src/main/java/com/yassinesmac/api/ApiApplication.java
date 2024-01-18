@@ -9,9 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ApiApplication {
 
 	public static void main(String[] args) {
-
-		var ctx = SpringApplication.run(ApiApplication.class, args);
-		System.out.println(ctx.getEnvironment());
+		SpringApplication.run(ApiApplication.class, args);
 	}
 
 }
