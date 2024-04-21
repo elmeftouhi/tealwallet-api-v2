@@ -1,8 +1,7 @@
-package com.yassinesmac.api.service;
+package com.tealwallet.api.service;
 
-import com.yassinesmac.api.dto.ExpenseCategory;
-import com.yassinesmac.api.repository.ExpenseCategoryRepository;
-import org.springframework.data.domain.Sort;
+import com.tealwallet.api.entity.ExpenseCategory;
+import com.tealwallet.api.repository.ExpenseCategoryRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +23,11 @@ public class ExpenseCategoryImpl implements ExpenseCategoryService {
     }
 
     @Override
+    public List<ExpenseCategory> getAllWithDetails() {
+        return null;
+    }
+
+    @Override
     public ExpenseCategory save(ExpenseCategory expenseCategory) {
         return expenseCategoryRepository.save(expenseCategory);
     }
@@ -37,5 +41,21 @@ public class ExpenseCategoryImpl implements ExpenseCategoryService {
     @Override
     public Optional<ExpenseCategory> findById(Long id) {
         return expenseCategoryRepository.findById(id);
+    }
+
+    @Override
+    public void updateLevel(Integer newLevel){
+        List<ExpenseCategory> categories = expenseCategoryRepository.findByLevelGreaterThanEqual(newLevel);
+        categories.forEach(c -> System.out.println(c.toString()));
+
+        /*
+        List<ExpenseCategory> newList = categories.stream()
+                .map(c -> new ExpenseCategory(c.getId(), c.getName(), c.getLevel()+1))
+                .toList();  //.forEach(c -> {c.setLevel(c.getLevel() + 1);});
+        newList.forEach(c -> System.out.println(c.toString()));
+        expenseCategoryRepository.saveAll(newList);
+        System.out.println("******counter : " + (long) categories.size());
+        *
+         */
     }
 }

@@ -1,4 +1,4 @@
-package com.yassinesmac.api;
+package com.tealwallet.api;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

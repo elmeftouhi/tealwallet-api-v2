@@ -1,5 +1,6 @@
-package com.yassinesmac.api.config;
+package com.tealwallet.api.config;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,6 +11,7 @@ import javax.sql.DataSource;
 @Configuration
 public class DataSourceConf {
     @Bean
+    @Primary
     public DataSource mysqlConf(){
         DataSourceBuilder<?> dataSourceBuilder = DataSourceBuilder.create();
 
@@ -20,7 +22,6 @@ public class DataSourceConf {
     }
 
     @Bean
-    @Primary
     public DataSource h2Conf(){
         DataSourceBuilder<?> dataSourceBuilder = DataSourceBuilder.create();
 
