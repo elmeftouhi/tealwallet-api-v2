@@ -10,4 +10,5 @@ public interface ExpenseService {
     List<ExpenseDto> getAll();
 
     ExpenseDto save(ExpenseDto expenseDto);
+    void delete(Long id);
 }

@@ -38,4 +38,10 @@ public class ExpenseServiceImpl implements ExpenseService{
         Expense savedExpense = expenseRepository.save(newExpense);
         return modelMapper.map(savedExpense, ExpenseDto.class);
     }
+
+    @Override
+    public void delete(Long id) {
+        // Implementing soft delete
+
+    }
 }

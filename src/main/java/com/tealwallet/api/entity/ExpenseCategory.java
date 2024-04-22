@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -24,18 +25,25 @@ public class ExpenseCategory{
         private Boolean isActive;
         private String icon;
 
+        private LocalDateTime deletedAt;
+
+        private Long deletedBy;
+
         @Column(name = "expenses")
         @OneToMany(mappedBy = "expenseCategory", fetch = FetchType.LAZY)
         private Set<Expense> expenses = new HashSet<>();
         public ExpenseCategory() {
         }
 
-        public ExpenseCategory(Long id, String name, Integer level, Boolean isActive, String icon) {
+        public ExpenseCategory(Long id, String name, Integer level, Boolean isActive, String icon, LocalDateTime deletedAt, Long deletedBy, Set<Expense> expenses) {
                 this.id = id;
                 this.name = name;
                 this.level = level;
                 this.isActive = isActive;
                 this.icon = icon;
+                this.deletedAt = deletedAt;
+                this.deletedBy = deletedBy;
+                this.expenses = expenses;
         }
 
         public Long getId() {
@@ -80,6 +88,22 @@ public class ExpenseCategory{
 
         public Set<Expense> getExpenses() {
                 return expenses;
+        }
+
+        public LocalDateTime getDeletedAt() {
+                return deletedAt;
+        }
+
+        public void setDeletedAt(LocalDateTime deletedAt) {
+                this.deletedAt = deletedAt;
+        }
+
+        public Long getDeletedBy() {
+                return deletedBy;
+        }
+
+        public void setDeletedBy(Long deletedBy) {
+                this.deletedBy = deletedBy;
         }
 
         @Override
